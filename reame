@@ -1,0 +1,34 @@
+QT, vs2022, cmake, spdlog, config
+
+left.ui 加到 CMakeLists.txt 里：自动生成 ui_left.h，编译时自动包含
+leftpanel.h 封装 left.ui，提供接口给 mainwindow.cpp 调用
+✔ Qt 路径写在 Preset
+✔ VS 自动读取
+✔ 不依赖插件
+✔ 不需要手动设置 Qt6_DIR
+
+🧠 进阶升级（推荐你下一步做）
+✅ 1. 路径改为环境变量（更专业）
+"CMAKE_PREFIX_PATH": "$env{QT_ROOT}"
+
+然后：
+
+set QT_ROOT=C:\Qt\6.10.0\msvc2022_64
+✅ 2. 自动部署（Release）
+add_custom_command(TARGET WireGuardQt POST_BUILD
+    COMMAND ${WINDEPLOYQT} $<TARGET_FILE:WireGuardQt>
+)
+✅ 3. 分层架构（你后面会需要）
+add_library(core ...)
+add_executable(gui ...)
+add_executable(service ...)
+🧭 总结一句话
+
+👉 真正稳定的 Qt + CMake 方案是：
+
+CMakePresets.json + CMAKE_PREFIX_PATH
+
+todo:
+多配置 Preset（Debug / Release / Clang / MSVC / 打包）
+🔥 
+一键 build + deploy + 打包 installer 的完整流水线

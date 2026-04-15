@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25
+  },
+  "configurePresets": [
+    {
+      "name": "vcpkg",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        },
+        "VCPKG_TARGET_TRIPLET": "x64-windows",          // ← 强烈建议加上
+        "VCPKG_FEATURE_FLAGS": "manifests"             // ← 如果使用 vcpkg.json，强烈建议
+      },
+      "environment": {
+        "VCPKG_FEATURE_FLAGS": "manifests"
+      }
+    },
+    {
+      "name": "msvc-qt-debug",
+      "displayName": "Qt-Debug",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/debug",
+      "inherits": "vcpkg",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "D:/Qt/6.10.3/msvc2022_64",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "msvc-qt-release",
+      "displayName": "Qt-Release",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/release",
+      "inherits": "vcpkg",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "D:/Qt/6.10.3/msvc2022_64",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ]
+}
