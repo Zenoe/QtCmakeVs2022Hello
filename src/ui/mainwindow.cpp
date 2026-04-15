@@ -9,6 +9,15 @@
 #include "config_manager.h"
 #include "logger.h"
 
+/*MainWindow
+©¸©¤©¤ centralWidget
+©¸©¤©¤ QVBoxLayout
+©À©¤©¤ TopBar(buttons / actions)
+©À©¤©¤ Splitter(MAIN CONTENT)
+©¦     ©À©¤©¤ LeftPanel(navigation)
+©¦     ©¸©¤©¤ RightPanel(main view)
+©¸©¤©¤ StatusBar(optional or Qt built - in)
+*/
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
